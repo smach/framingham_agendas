@@ -53,6 +53,16 @@ needed_files <- results |>
   filter(Board %in% c("Board of License Commissioners", "Planning Board")) |>
   filter(!ID %in% existing_ids)
 
+# Clean up PDFs older than 30 days
+pdf_files <- list.files("data", pattern = "\\.pdf$", full.names = TRUE)
+if (length(pdf_files) > 0) {
+  file_info <- file.info(pdf_files)
+  old_files <- pdf_files[difftime(Sys.time(), file_info$mtime, units = "days") > 30]
+  if (length(old_files) > 0) {
+    message("Deleting ", length(old_files), " PDF(s) older than 30 days")
+    file.remove(old_files)
+  }
+}
 
 # Step 1: Download and text parse the PDFs
 
