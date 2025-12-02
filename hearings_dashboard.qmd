@@ -1,0 +1,85 @@
+---
+title: "Framingham Public Hearings Dashboard"
+format:
+  html:
+    theme: cosmo
+    page-layout: full
+    embed-resources: true
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+library(dplyr)
+library(DT)
+library(lubridate)
+library(crosstalk)
+```
+
+```{r}
+#| label: load-data
+#| echo: false
+# Load the hearings data
+hearings <- readRDS("hearings_with_districts.Rds")
+
+# Convert District to character and clean up
+hearings_clean <- hearings %>%
+  mutate(
+    District = as.character(District),
+    District = if_else(is.na(District), "Unknown", District),
+    Date = as.Date(Date),
+    Link = paste0('<a href="', URL, '" target="_blank">Link</a>')
+  ) %>%
+  select(Date, District, Board, description, address, Link) %>%
+  arrange(desc(Date))
+
+# Create SharedData object for crosstalk
+shared_hearings <- SharedData$new(hearings_clean, ~District)
+```
+
+## Framingham Public Hearings by District
+
+This dashboard shows all public hearings extracted from Framingham Board of License Commissioners and Planning Board agendas, geocoded to city council districts.
+
+**Date range:** `r format(min(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` - `r format(max(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` | **Last Updated:** `r format(Sys.time(), '%B %d, %Y at %I:%M %p')`
+
+---
+
+### Filter by District
+
+```{r}
+#| label: district-filter
+#| echo: false
+filter_select("district", "Select District(s):", shared_hearings, ~District, multiple = TRUE)
+```
+
+### All Hearings
+
+Use the district filter above to narrow down results, or use the search box and column filters below. Click "Link" to view the original agenda PDF.
+
+```{r}
+#| label: interactive-table
+#| echo: false
+shared_hearings %>%
+  datatable(
+    filter = 'top',
+    extensions = 'Buttons',
+    escape = FALSE,
+    options = list(
+      pageLength = 50,
+      dom = 'Bfrtip',
+      buttons = c('copy', 'csv', 'excel'),
+      scrollX = TRUE,
+      autoWidth = TRUE
+    ),
+    rownames = FALSE,
+    colnames = c('Date', 'District', 'Board', 'Description', 'Address', 'Link')
+  ) %>%
+  formatDate(1, 'toDateString')
+```
+
+---
+
+*Data source: [Framingham Meeting Agendas](https://framinghamma.granicus.com/ViewPublisherRSS.php?view_id=1&mode=agendas)*

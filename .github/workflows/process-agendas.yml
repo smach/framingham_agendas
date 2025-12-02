@@ -1,0 +1,80 @@
+name: Process Framingham Agendas
+
+on:
+  schedule:
+    # Run at 1:30 PM UTC and 10:30 PM UTC (8:30 AM and 5:30 PM EST)
+    - cron: '30 13 * * *'  # 8:30 AM EST
+    - cron: '30 22 * * *'  # 5:30 PM EST
+  workflow_dispatch:  # Allow manual triggering from Actions tab
+
+jobs:
+  process-agendas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup R with r2u
+        uses: eddelbuettel/github-actions/r2u-setup@master
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install R packages with r2u
+        run: |
+          # r2u provides binary packages for much faster installation
+          install.packages(c(
+            "pdftools",
+            "tidyRSS",
+            "glue",
+            "dplyr",
+            "data.table",
+            "tidyr",
+            "stringr",
+            "rio",
+            "nanoparquet",
+            "ellmer",
+            "purrr",
+            "tidygeocoder",
+            "sf",
+            "lubridate",
+            "emayili",
+            "DT",
+            "leaflet",
+            "htmlwidgets",
+            "crosstalk",
+            "quarto"
+          ))
+        shell: Rscript {0}
+
+      - name: Set API keys and email credentials
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEOCODIO_API_KEY: ${{ secrets.GEOCODIO_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: |
+          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
+          echo "GEOCODIO_API_KEY=$GEOCODIO_API_KEY" >> $GITHUB_ENV
+          echo "SMTP_HOST=$SMTP_HOST" >> $GITHUB_ENV
+          echo "SMTP_PORT=$SMTP_PORT" >> $GITHUB_ENV
+          echo "SMTP_USERNAME=$SMTP_USERNAME" >> $GITHUB_ENV
+          echo "SMTP_PASSWORD=$SMTP_PASSWORD" >> $GITHUB_ENV
+          echo "EMAIL_TO=$EMAIL_TO" >> $GITHUB_ENV
+          echo "EMAIL_FROM=$EMAIL_FROM" >> $GITHUB_ENV
+
+      - name: Run agenda processing script
+        run: Rscript agendas_to_geocode.R
+
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add hearings_with_districts.Rds new_hearings_with_districts.Rds data/*.pdf interim_*.parquet interim_*.Rds hearings_dashboard.html
+          git diff --staged --quiet || git commit -m "Update hearings data and dashboard - $(date +'%Y-%m-%d %H:%M')"
+          git push
