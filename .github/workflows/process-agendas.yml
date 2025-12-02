@@ -75,6 +75,11 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add hearings_with_districts.Rds new_hearings_with_districts.Rds data/*.pdf interim_*.parquet interim_*.Rds hearings_dashboard.html
+          git add hearings_dashboard.html || true
+          git add hearings_with_districts.Rds || true
+          git add new_hearings_with_districts.Rds || true
+          git add data/*.pdf || true
+          git add interim_*.parquet || true
+          git add interim_*.Rds || true
           git diff --staged --quiet || git commit -m "Update hearings data and dashboard - $(date +'%Y-%m-%d %H:%M')"
           git push

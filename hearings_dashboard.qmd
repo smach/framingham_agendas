@@ -1,5 +1,5 @@
 ---
-title: "Framingham Public Hearings Dashboard"
+title: "Framingham License Commission and Planning Board Hearings Dashboard"
 format:
   html:
     theme: cosmo
@@ -39,9 +39,9 @@ hearings_clean <- hearings %>%
 shared_hearings <- SharedData$new(hearings_clean, ~District)
 ```
 
-## Framingham Public Hearings by District
+## Hearings by District
 
-This dashboard shows all public hearings extracted from Framingham Board of License Commissioners and Planning Board agendas, geocoded to city council districts.
+This dashboard aims to show scheduled public hearings extracted from Framingham Board of License Commissioners and Planning Board agendas, geocoded to city council districts.
 
 **Date range:** `r format(min(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` - `r format(max(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` | **Last Updated:** `r format(Sys.time(), '%B %d, %Y at %I:%M %p')`
 
@@ -55,7 +55,7 @@ This dashboard shows all public hearings extracted from Framingham Board of Lice
 filter_select("district", "Select District(s):", shared_hearings, ~District, multiple = TRUE)
 ```
 
-### All Hearings
+### Hearings
 
 Use the district filter above to narrow down results, or use the search box and column filters below. Click "Link" to view the original agenda PDF.
 
