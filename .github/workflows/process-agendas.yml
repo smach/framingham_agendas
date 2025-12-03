@@ -19,9 +19,6 @@ jobs:
       - name: Setup R with r2u
         uses: eddelbuettel/github-actions/r2u-setup@master
 
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
       - name: Install system dependencies
         run: |
           sudo apt-get update -qq
@@ -50,8 +47,9 @@ jobs:
             "DT",
             "leaflet",
             "htmlwidgets",
-            "crosstalk",
-            "quarto"
+            "shiny",
+            "bslib",
+            "rsconnect"
           ))
         shell: Rscript {0}
         timeout-minutes: 15
@@ -79,13 +77,17 @@ jobs:
       - name: Run agenda processing script
         run: Rscript agendas_to_geocode.R
 
+      - name: Update manifest for deployment
+        run: |
+          Rscript -e "rsconnect::writeManifest(appPrimaryDoc = 'hearings_app.R')"
+
       - name: Commit and push results
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add hearings_dashboard.html || true
           git add hearings_with_districts.Rds || true
           git add new_hearings_with_districts.Rds || true
+          git add manifest.json || true
           git add data/*.pdf || true
           git add interim_*.parquet || true
           git add interim_*.Rds || true

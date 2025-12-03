@@ -195,9 +195,6 @@ if(exists("hearings_df")) {
 
   # Send email uncomment this
   # source("send_email.R")
-
-  # In GitHub Action
-  quarto::quarto_render("hearings_dashboard.qmd")
 }
 
 
