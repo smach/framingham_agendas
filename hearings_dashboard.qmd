@@ -39,8 +39,6 @@ hearings_clean <- hearings %>%
 shared_hearings <- SharedData$new(hearings_clean, ~District)
 ```
 
-## Hearings by District
-
 This dashboard aims to show scheduled public hearings extracted from Framingham Board of License Commissioners and Planning Board agendas, geocoded to city council districts.
 
 **Date range:** `r format(min(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` - `r format(max(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y')` | **Last Updated:** `r format(Sys.time(), '%B %d, %Y at %I:%M %p')`

@@ -29,7 +29,7 @@
     }
 
     # Set up SMTP server (credentials from environment variables)
-    smtp <- server(
+    smtp <- emayili::server(
       host = Sys.getenv("SMTP_HOST"),
       port = as.numeric(Sys.getenv("SMTP_PORT")),
       username = Sys.getenv("SMTP_USERNAME"),
@@ -37,7 +37,7 @@
     )
 
     # Create and send email
-    email <- envelope(
+    email <- emayili::envelope(
       to = Sys.getenv("EMAIL_TO"),
       from = Sys.getenv("EMAIL_FROM"),
       subject = paste0("New Framingham Hearings - ", nrow(new_items_to_notify), " items in Districts ", paste(unique(new_items_to_notify$District), collapse = ", ")),
