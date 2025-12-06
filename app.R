@@ -108,6 +108,12 @@ ui <- page_navbar(
                        choices = c("All" = "all", unique(hearings_clean$Board)),
                        selected = "all",
                        multiple = FALSE),
+            dateRangeInput("date_filter",
+                          "Date Range:",
+                          start = min(hearings_clean$Date, na.rm = TRUE),
+                          end = max(hearings_clean$Date, na.rm = TRUE),
+                          min = min(hearings_clean$Date, na.rm = TRUE),
+                          max = max(hearings_clean$Date, na.rm = TRUE)),
             div(
               style = "margin-top: 1rem; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; font-size: 0.85rem;",
               tags$strong("Selected: "), textOutput("selected_district", inline = TRUE)
@@ -234,6 +240,9 @@ server <- function(input, output, session) {
     last_click(NULL)
     updateSelectInput(session, "district_filter", selected = "all")
     updateSelectInput(session, "board_filter", selected = "all")
+    updateDateRangeInput(session, "date_filter",
+                        start = min(hearings_clean$Date, na.rm = TRUE),
+                        end = max(hearings_clean$Date, na.rm = TRUE))
   })
 
   # Sync dropdown selection with map
@@ -268,6 +277,11 @@ server <- function(input, output, session) {
     # Filter by board
     if (input$board_filter != "all") {
       data <- data %>% filter(Board == input$board_filter)
+    }
+
+    # Filter by date range
+    if (!is.null(input$date_filter)) {
+      data <- data %>% filter(Date >= input$date_filter[1] & Date <= input$date_filter[2])
     }
 
     data
