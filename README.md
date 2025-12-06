@@ -37,7 +37,7 @@ needed_files <- results |>
   filter(!ID %in% existing_ids)
 ```
 
-Rather than re-downloading everything each run, the script checks which PDFs already exist in the `data/` folder. Only new agendas get processed. There's also cleanup logic that deletes PDFs older than 30 days to avoid accumulating files indefinitely.
+Rather than re-downloading everything each run, the script checks which PDFs already exist in the `data/` folder. Only new agendas get processed. There's also cleanup logic that deletes PDFs older than 90 days to avoid accumulating files indefinitely.
 
 ### PDF text extraction with error handling
 

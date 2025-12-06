@@ -105,7 +105,7 @@ if(exists("new_files")) {
     description = "Array of all hearing items found in the text. Extract only items that are clearly part of hearings, there will be other info in the text."
   )
 
-  chat <- chat_openai(model = "gpt-4.1", system_prompt = "You are adept at extracting structured data such as descriptions and addresses from public meeting agenda. You do this only for public hearing items.")
+  chat <- chat_openai(model = "gpt-4.1", system_prompt = "You are adept at extracting structured data such as descriptions and addresses from public meeting agenda. You do this for public hearing items and licensing hearing items.")
   
   temp_results <- new_files %>%
   rowwise() %>%
