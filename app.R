@@ -41,7 +41,7 @@ districts_wgs84 <- st_transform(districts_sf, 4326)
 
 # Define UI
 ui <- page_navbar(
-  title = "Framingham Hearings Dashboard",
+  title = "Framingham Board of License Commissioners and Planning Board Agenda Data",
   theme = bs_theme(
     version = 5,
     bg = "#ffffff",
@@ -82,7 +82,7 @@ ui <- page_navbar(
           card_header("Interactive District Map"),
           card_body(
             style = "padding: 0.75rem;",
-            p("Click a district to filter the table. Click outside the districts to clear.",
+            p("Click a district to filter the table. Click a second time to clear.",
               style = "color: #6c757d; font-size: 0.85rem; margin: 0 0 0.75rem 0;"),
             leafletOutput("map", height = "450px")
           )
@@ -120,10 +120,10 @@ ui <- page_navbar(
       div(
         style = "flex: 1 1 55%; min-width: 400px;",
         card(
-          card_header("Hearings Details"),
+          card_header("Data on Scheduled Hearings"),
           card_body(
             style = "padding: 0.75rem; min-height: 600px;",
-            p("Use the map/filters or search below to explore hearings data.",
+            p("Use the map/filters or search below to explore data about scheduled hearings.",
               style = "color: #6c757d; font-size: 0.85rem; margin: 0 0 0.75rem 0;"),
             div(style = "overflow-y: visible;",
               DTOutput("hearings_table")
