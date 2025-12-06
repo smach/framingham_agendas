@@ -11,6 +11,8 @@ It uses several technologies I am keenly interested in when working with local g
 
 The only thing it's missing is a chatbot! 😅 I don't think this data set needs one, but if you're interested in that, check out my InfoWorld article [How to create your own RAG applications in R](https://www.infoworld.com/article/4020484/generative-ai-rag-comes-to-the-r-tidyverse.html).
 
+Important: I haven't thoroughly tested this yet.
+
 Here is an explanation of the code in this repo, written by Claude and edited by me:
 
 ## agendas_to_geocode.R
@@ -143,7 +145,7 @@ addPolygons(
 
 `addPolygons()` draws the district boundaries. The `layerId` parameter is crucial—it lets us identify which district was clicked. `highlightOptions` provides hover feedback.
 
-[NOte: The new mapgl R package is now among my favorites for mapping in R, but I don't know how it plays with bi-directional Ahiny filtering. Claude chose leaflet, which I'm sure it has much more training data on.]
+[Note: The new mapgl R package is now among my favorites for mapping in R, but I don't know how it plays with bi-directional Ahiny filtering. Claude chose leaflet, which I'm sure it has much more training data on.]
 
 ### Bidirectional filter sync
 
