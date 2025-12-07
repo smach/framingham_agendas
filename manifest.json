@@ -3536,13 +3536,13 @@
       "checksum": "0dea7959aaf38f7cd772ae2c4526db21"
     },
     "agendas_to_geocode.R": {
-      "checksum": "aae5abd6c22a5202137bdb51fe178c18"
+      "checksum": "539f7ec418405fe7fa810d2b2ed29a82"
     },
     "app.R": {
       "checksum": "b60e3763d97297dfe396fe3e6d51fce6"
     },
     "data/Agenda_2563.pdf": {
-      "checksum": "c8cbbe8a3daf5a11e80c9ddd4d4a519b"
+      "checksum": "baef1e3e9d9881fd75cf03ef3903905e"
     },
     "data/Agenda_4850.pdf": {
       "checksum": "2ff60bf3d84764f77dbfadd0d6660668"
@@ -3590,16 +3590,19 @@
       "checksum": "553d0aa1fced84d4257455fe36356242"
     },
     "hearings_with_districts.Rds": {
-      "checksum": "3ecbbe184fe72d532206216015a19fc2"
+      "checksum": "8e29453361bdeecca80c16e09d5bef8f"
+    },
+    "interim_latest_files_geocoded.Rds": {
+      "checksum": "ef5462ae89e4922c4e3860da392194c3"
     },
     "interim_latest_files_w_text.parquet": {
-      "checksum": "2491aa8fbb5504d9dcd8b7b743f602b6"
+      "checksum": "eb7bea515f7c0117e89f591710f44fe0"
     },
     "new_hearings_with_districts.Rds": {
-      "checksum": "3ecbbe184fe72d532206216015a19fc2"
+      "checksum": "8e29453361bdeecca80c16e09d5bef8f"
     },
     "README.md": {
-      "checksum": "8a58c7ae555abaed39aaf84bd8f0c4a3"
+      "checksum": "ce1e798be7a28ebbc941c4148a54856d"
     },
     "send_email.R": {
       "checksum": "a9a91169643635f2682b9278f12a2942"
