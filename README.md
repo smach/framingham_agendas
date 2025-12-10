@@ -9,11 +9,11 @@ It uses several technologies I am keenly interested in when working with local g
 * Displaying data interactively in both a map and searchable table
 * Still to hook up: Sending out an email when data I want is updated.
 
-The only thing it's missing is a chatbot! 😅 I don't think this data set needs one, but if you're interested in that, check out my InfoWorld article [How to create your own RAG applications in R](https://www.infoworld.com/article/4020484/generative-ai-rag-comes-to-the-r-tidyverse.html).
+The only thing it's missing is a chatbot! 😀 I don't think this data set needs one, but if you're interested in that, check out my InfoWorld article [How to create your own RAG applications in R](https://www.infoworld.com/article/4020484/generative-ai-rag-comes-to-the-r-tidyverse.html).
 
 Important: I haven't thoroughly tested this yet.
 
-Here is an explanation of the code in this repo, written by Claude and edited by me:
+Here is an explanation of the code in this repo. The explanation below (and actually much of the code 😅 ) was written by Claude and edited by me:
 
 ## agendas_to_geocode.R
 
