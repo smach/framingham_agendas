@@ -2207,22 +2207,21 @@
         "Package": "proxy",
         "Type": "Package",
         "Title": "Distance and Similarity Measures",
-        "Version": "0.4-27",
-        "Authors@R": "c(person(given = \"David\", family = \"Meyer\", role = c(\"aut\", \"cre\"), email = \"David.Meyer@R-project.org\"),\n             person(given = \"Christian\", family = \"Buchta\", role = \"aut\"))",
+        "Version": "0.4-28",
+        "Authors@R": "c(person(given = \"David\", family = \"Meyer\", role = c(\"aut\", \"cre\"),\n                    email = \"David.Meyer@R-project.org\",\n\t\t    comment = c(ORCID = \"0000-0002-5196-3048\")),\t    \n             person(given = \"Christian\", family = \"Buchta\", role = \"aut\"))",
         "Description": "Provides an extensible framework for the efficient calculation of auto- and cross-proximities, along with implementations of the most popular ones. ",
         "Depends": "R (>= 3.4.0)",
         "Imports": "stats, utils",
         "Suggests": "cba",
         "Collate": "registry.R database.R dist.R similarities.R dissimilarities.R\nutil.R seal.R",
-        "License": "GPL-2",
+        "License": "GPL-2 | GPL-3",
         "NeedsCompilation": "yes",
-        "Packaged": "2022-06-08 21:36:02 UTC; meyer",
-        "Author": "David Meyer [aut, cre],\n  Christian Buchta [aut]",
+        "Packaged": "2025-12-11 11:30:58 UTC; meyer",
+        "Author": "David Meyer [aut, cre] (ORCID: <https://orcid.org/0000-0002-5196-3048>),\n  Christian Buchta [aut]",
         "Maintainer": "David Meyer <David.Meyer@R-project.org>",
-        "Repository": "RSPM",
-        "Date/Publication": "2022-06-09 06:15:32 UTC",
-        "Encoding": "UTF-8",
-        "Built": "R 4.4.2; x86_64-pc-linux-gnu; 2025-02-25 01:24:01 UTC; unix"
+        "Repository": "CRAN",
+        "Date/Publication": "2025-12-11 15:24:53 UTC",
+        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-11 19:16:14 UTC; unix"
       }
     },
     "purrr": {
@@ -3566,6 +3565,9 @@
     "data/Agenda_4973.pdf": {
       "checksum": "be249a26df24c396fde17fb5a5461bac"
     },
+    "data/Agenda_5018.pdf": {
+      "checksum": "f4898ff4a558a5f4dbec6e7abcc59691"
+    },
     "data/temp.txt": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -3597,16 +3599,16 @@
       "checksum": "553d0aa1fced84d4257455fe36356242"
     },
     "hearings_with_districts.Rds": {
-      "checksum": "4ab35d335a05a4eee6cf45d499714b01"
+      "checksum": "c434c13d328012bb0a19f0034829dee5"
     },
     "interim_latest_files_geocoded.Rds": {
       "checksum": "ef5462ae89e4922c4e3860da392194c3"
     },
     "interim_latest_files_w_text.parquet": {
-      "checksum": "3ffff0e4a105df90077fa4799a72eeef"
+      "checksum": "910b8a1ef5eb60ea4c3fc16ae3cd8b94"
     },
     "new_hearings_with_districts.Rds": {
-      "checksum": "f6ab95eca9738e4075743136f87f07e0"
+      "checksum": "992cbf5be681659d9e78f24cceb8f50c"
     },
     "README.md": {
       "checksum": "afb23cc5122fd59ab4e04858609bd4d5"
