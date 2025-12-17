@@ -3568,6 +3568,9 @@
     "data/Agenda_5018.pdf": {
       "checksum": "f4898ff4a558a5f4dbec6e7abcc59691"
     },
+    "data/Agenda_5034.pdf": {
+      "checksum": "81c123a8559501f6cdd0c9eebf1746ee"
+    },
     "data/temp.txt": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -3599,16 +3602,16 @@
       "checksum": "553d0aa1fced84d4257455fe36356242"
     },
     "hearings_with_districts.Rds": {
-      "checksum": "c434c13d328012bb0a19f0034829dee5"
+      "checksum": "aeef9e4061f76565fed6952e80364151"
     },
     "interim_latest_files_geocoded.Rds": {
       "checksum": "ef5462ae89e4922c4e3860da392194c3"
     },
     "interim_latest_files_w_text.parquet": {
-      "checksum": "910b8a1ef5eb60ea4c3fc16ae3cd8b94"
+      "checksum": "f30203343f70ae6b49c028d9cb0381cc"
     },
     "new_hearings_with_districts.Rds": {
-      "checksum": "992cbf5be681659d9e78f24cceb8f50c"
+      "checksum": "58f9dfdd5495bb47eb96d291fd312341"
     },
     "README.md": {
       "checksum": "afb23cc5122fd59ab4e04858609bd4d5"
