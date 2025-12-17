@@ -1928,7 +1928,7 @@
       "description": {
         "Package": "nanoparquet",
         "Title": "Read and Write 'Parquet' Files",
-        "Version": "0.4.2",
+        "Version": "0.4.3",
         "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", role = c(\"aut\", \"cre\"), email = \"csardi.gabor@gmail.com\"),\n    person(\"Hannes\", \"Mühleisen\", role = c(\"aut\", \"cph\"), comment = c(ORCID = \"0000-0001-8552-0029\")),\n    person(\"Google Inc.\", role = \"cph\"),\n    person(\"Apache Software Foundation\", role = \"cph\"),\n    person(\"Posit Software, PBC\", role = \"cph\"),\n    person(\"RAD Game Tools\", role = \"cph\"),\n    person(\"Valve Software\", role = \"cph\"),\n    person(\"Tenacious Software LLC\", role = \"cph\"),\n    person(\"Facebook, Inc.\", role = \"cph\"))",
         "Description": "Self-sufficient reader and writer for flat 'Parquet' files.\n    Can read most 'Parquet' data types. Can write many 'R' data types,\n    including factors and temporal types. See docs for limitations.",
         "Depends": "R (>= 4.0.0)",
@@ -1936,19 +1936,20 @@
         "URL": "https://github.com/r-lib/nanoparquet,\nhttps://nanoparquet.r-lib.org/",
         "BugReports": "https://github.com/r-lib/nanoparquet/issues",
         "Encoding": "UTF-8",
-        "Suggests": "arrow, bit64, DBI, duckdb, hms, mockery, pillar, processx,\nrprojroot, spelling, testthat, tzdb, withr",
+        "Suggests": "arrow, bit64, DBI, duckdb (>= 1.4.0), hms, mockery, pillar,\nprocessx, rprojroot, spelling, testthat, tzdb, withr",
         "RoxygenNote": "7.3.2.9000",
         "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "TRUE",
         "Config/Needs/website": "tidyverse/tidytemplate, r-lib/pkgdown, dplyr, gt,\ngtExtras, knitr, nycflights13, prettyunits, quarto, rmarkdown,\nsessioninfo, svglite",
         "Language": "en-US",
         "Biarch": "true",
         "NeedsCompilation": "yes",
-        "Packaged": "2025-02-22 10:23:40 UTC; gaborcsardi",
-        "Author": "Gábor Csárdi [aut, cre],\n  Hannes Mühleisen [aut, cph] (<https://orcid.org/0000-0001-8552-0029>),\n  Google Inc. [cph],\n  Apache Software Foundation [cph],\n  Posit Software, PBC [cph],\n  RAD Game Tools [cph],\n  Valve Software [cph],\n  Tenacious Software LLC [cph],\n  Facebook, Inc. [cph]",
+        "Packaged": "2025-12-16 21:21:50 UTC; gaborcsardi",
+        "Author": "Gábor Csárdi [aut, cre],\n  Hannes Mühleisen [aut, cph] (ORCID:\n    <https://orcid.org/0000-0001-8552-0029>),\n  Google Inc. [cph],\n  Apache Software Foundation [cph],\n  Posit Software, PBC [cph],\n  RAD Game Tools [cph],\n  Valve Software [cph],\n  Tenacious Software LLC [cph],\n  Facebook, Inc. [cph]",
         "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
-        "Repository": "RSPM",
-        "Date/Publication": "2025-02-22 10:50:03 UTC",
-        "Built": "R 4.4.0; x86_64-pc-linux-gnu; 2025-02-23 04:22:02 UTC; unix"
+        "Repository": "CRAN",
+        "Date/Publication": "2025-12-17 06:40:22 UTC",
+        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-17 13:16:15 UTC; unix"
       }
     },
     "openssl": {
@@ -2645,7 +2646,7 @@
         "Package": "selectr",
         "Type": "Package",
         "Title": "Translate CSS Selectors to XPath Expressions",
-        "Version": "0.5-0",
+        "Version": "0.5-1",
         "Authors@R": "c(person(\"Simon\", \"Potter\",\n                    role = c(\"aut\", \"trl\", \"cre\"),\n                    email = \"simon@sjp.co.nz\"),\n             person(\"Simon\", \"Sapin\", role = \"aut\"),\n             person(\"Ian\", \"Bicking\", role = \"aut\"))",
         "License": "BSD_3_clause + file LICENCE",
         "Depends": "R (>= 3.0)",
@@ -2655,12 +2656,12 @@
         "BugReports": "https://github.com/sjp/selectr/issues",
         "Description": "Translates a CSS selector into an equivalent XPath\n  expression. This allows us to use CSS selectors when working with\n  the XML package as it can only evaluate XPath expressions. Also\n  provided are convenience functions useful for using CSS selectors on\n  XML nodes. This package is a port of the Python package 'cssselect'\n  (<https://cssselect.readthedocs.io/>).",
         "NeedsCompilation": "no",
-        "Packaged": "2025-11-21 10:07:08 UTC; codespace",
+        "Packaged": "2025-12-17 07:03:48 UTC; codespace",
         "Author": "Simon Potter [aut, trl, cre],\n  Simon Sapin [aut],\n  Ian Bicking [aut]",
         "Maintainer": "Simon Potter <simon@sjp.co.nz>",
         "Repository": "CRAN",
-        "Date/Publication": "2025-11-21 10:30:02 UTC",
-        "Built": "R 4.5.2; ; 2025-11-21 12:54:07 UTC; unix"
+        "Date/Publication": "2025-12-17 09:00:02 UTC",
+        "Built": "R 4.5.2; ; 2025-12-17 13:16:19 UTC; unix"
       }
     },
     "sf": {
