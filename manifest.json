@@ -925,7 +925,7 @@
       "Repository": "https://cloud.r-project.org",
       "description": {
         "Package": "e1071",
-        "Version": "1.7-16",
+        "Version": "1.7-17",
         "Title": "Misc Functions of the Department of Statistics, Probability\nTheory Group (Formerly: E1071), TU Wien",
         "Imports": "graphics, grDevices, class, stats, methods, utils, proxy",
         "Suggests": "cluster, mlbench, nnet, randomForest, rpart, SparseM, xtable,\nMatrix, MASS, slam",
@@ -934,13 +934,12 @@
         "License": "GPL-2 | GPL-3",
         "LazyLoad": "yes",
         "NeedsCompilation": "yes",
-        "Packaged": "2024-09-16 08:28:45 UTC; meyer",
-        "Author": "David Meyer [aut, cre] (<https://orcid.org/0000-0002-5196-3048>),\n  Evgenia Dimitriadou [aut, cph],\n  Kurt Hornik [aut] (<https://orcid.org/0000-0003-4198-9911>),\n  Andreas Weingessel [aut],\n  Friedrich Leisch [aut],\n  Chih-Chung Chang [ctb, cph] (libsvm C++-code),\n  Chih-Chen Lin [ctb, cph] (libsvm C++-code)",
+        "Packaged": "2025-12-17 20:18:24 UTC; meyer",
+        "Author": "David Meyer [aut, cre] (ORCID: <https://orcid.org/0000-0002-5196-3048>),\n  Evgenia Dimitriadou [aut, cph],\n  Kurt Hornik [aut] (ORCID: <https://orcid.org/0000-0003-4198-9911>),\n  Andreas Weingessel [aut],\n  Friedrich Leisch [aut],\n  Chih-Chung Chang [ctb, cph] (libsvm C++-code),\n  Chih-Chen Lin [ctb, cph] (libsvm C++-code)",
         "Maintainer": "David Meyer <David.Meyer@R-project.org>",
-        "Repository": "RSPM",
-        "Date/Publication": "2024-09-16 09:53:34 UTC",
-        "Encoding": "UTF-8",
-        "Built": "R 4.4.0; x86_64-pc-linux-gnu; 2024-09-17 05:02:11 UTC; unix"
+        "Repository": "CRAN",
+        "Date/Publication": "2025-12-18 13:06:03 UTC",
+        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-18 15:47:40 UTC; unix"
       }
     },
     "ellmer": {
@@ -3372,13 +3371,13 @@
       "description": {
         "Package": "wk",
         "Title": "Lightweight Well-Known Geometry Parsing",
-        "Version": "0.9.4",
+        "Version": "0.9.5",
         "Authors@R": "\n    c(\n      person(given = \"Dewey\",\n             family = \"Dunnington\",\n             role = c(\"aut\", \"cre\"),\n             email = \"dewey@fishandwhistle.net\",\n             comment = c(ORCID = \"0000-0002-9415-4582\")),\n       person(given = \"Edzer\",\n              family = \"Pebesma\",\n              role = c(\"aut\"),\n              email = \"edzer.pebesma@uni-muenster.de\",\n              comment = c(ORCID = \"0000-0001-8049-7069\")),\n      person(given = \"Anthony\",\n             family = \"North\",\n             email = \"anthony.jl.north@gmail.com\",\n             role = c(\"ctb\"))\n    )",
         "Maintainer": "Dewey Dunnington <dewey@fishandwhistle.net>",
         "Description": "Provides a minimal R and C++ API for parsing\n  well-known binary and well-known text representation of\n  geometries to and from R-native formats.\n  Well-known binary is compact\n  and fast to parse; well-known text is human-readable\n  and is useful for writing tests. These formats are\n  useful in R only if the information they contain can be\n  accessed in R, for which high-performance functions\n  are provided here.",
         "License": "MIT + file LICENSE",
         "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.3",
+        "RoxygenNote": "7.3.2",
         "Suggests": "testthat (>= 3.0.0), vctrs (>= 0.3.0), sf, tibble, readr",
         "URL": "https://paleolimbot.github.io/wk/,\nhttps://github.com/paleolimbot/wk",
         "BugReports": "https://github.com/paleolimbot/wk/issues",
@@ -3386,11 +3385,11 @@
         "Depends": "R (>= 2.10)",
         "LazyData": "true",
         "NeedsCompilation": "yes",
-        "Packaged": "2024-10-11 15:24:57 UTC; deweydunnington",
-        "Author": "Dewey Dunnington [aut, cre] (<https://orcid.org/0000-0002-9415-4582>),\n  Edzer Pebesma [aut] (<https://orcid.org/0000-0001-8049-7069>),\n  Anthony North [ctb]",
-        "Repository": "RSPM",
-        "Date/Publication": "2024-10-11 20:10:03 UTC",
-        "Built": "R 4.4.2; x86_64-pc-linux-gnu; 2025-02-25 01:18:59 UTC; unix"
+        "Packaged": "2025-12-18 03:40:52 UTC; deweydunnington",
+        "Author": "Dewey Dunnington [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-9415-4582>),\n  Edzer Pebesma [aut] (ORCID: <https://orcid.org/0000-0001-8049-7069>),\n  Anthony North [ctb]",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-12-18 06:10:16 UTC",
+        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-18 12:52:34 UTC; unix"
       }
     },
     "writexl": {
