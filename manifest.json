@@ -859,7 +859,7 @@
         "Maintainer": "Tyson Barrett <t.barrett88@gmail.com>",
         "Repository": "CRAN",
         "Date/Publication": "2025-12-24 12:05:11 UTC",
-        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-24 13:41:32 UTC; unix"
+        "Built": "R 4.5.2; x86_64-pc-linux-gnu; 2025-12-24 14:17:16 UTC; unix"
       }
     },
     "digest": {
@@ -3550,6 +3550,9 @@
     "data/Agenda_2605.pdf": {
       "checksum": "7a1c51e811fcd475b79e3af26e224f73"
     },
+    "data/Agenda_2612.pdf": {
+      "checksum": "323c8ef42dd9e2d04a98a6f7b581d44a"
+    },
     "data/Agenda_4850.pdf": {
       "checksum": "2ff60bf3d84764f77dbfadd0d6660668"
     },
@@ -3605,16 +3608,16 @@
       "checksum": "553d0aa1fced84d4257455fe36356242"
     },
     "hearings_with_districts.Rds": {
-      "checksum": "5e2c2b8bfffb2ff4ffc32da53e5a0255"
+      "checksum": "d99fe2a325f29e5591bad4a36440619f"
     },
     "interim_latest_files_geocoded.Rds": {
       "checksum": "ef5462ae89e4922c4e3860da392194c3"
     },
     "interim_latest_files_w_text.parquet": {
-      "checksum": "dc9a2aa6e368ddaad7d611627381fee4"
+      "checksum": "66890ad2b1568ca42e9a8c4920e8a04d"
     },
     "new_hearings_with_districts.Rds": {
-      "checksum": "f050ab01d0b455caf15466548ae5302e"
+      "checksum": "77a28a2b76ccade03fbfdef0fd8c65ac"
     },
     "README.md": {
       "checksum": "afb23cc5122fd59ab4e04858609bd4d5"
