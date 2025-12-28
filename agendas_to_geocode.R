@@ -193,14 +193,42 @@ if(exists("hearings_df")) {
   # Save combined results
   saveRDS(all_hearings, "hearings_with_districts.Rds")
 
-  all_hearings <- readRDS("hearings_with_districts.Rds")
-  all_hearings <- all_hearings |>
-    filter(!stringr::str_detect(URL, "2605$|2563$"))
-  saveRDS(all_hearings, "hearings_with_districts.Rds")
-  # saveRDS(dupes, "deleted_dupes.Rds")
-  # get rid of 2605 and either 2563 or 4973
+  # Moved data processing from app.R to here to make app load faster ====
+  hearings <- readRDS("hearings_with_districts.Rds")
+  
+  # Clean hearings data
+  hearings_clean <- hearings %>%
+    mutate(
+      District = as.character(District),
+      District = if_else(is.na(District), "Unknown", District),
+      Date = as.Date(Date),
+      Link = paste0('<a href="', URL, '" target="_blank">View Agenda</a>')
+    ) %>%
+    select(Date, District, Board, description, address, Link) %>%
+    arrange(desc(Date))
 
+  # Load district shapefile
+  districts_sf <- sf::st_read("gis/framingham_districts.shp", quiet = TRUE) %>%
+    mutate(District = as.character(District))
+  
+  # Count hearings by district
+  hearing_counts <- hearings_clean %>%
+    filter(District != "Unknown") %>%
+    count(District, name = "hearing_count")
 
+  # Join counts to shapefile
+  districts_sf <- districts_sf %>%
+    left_join(hearing_counts, by = "District") %>%
+    mutate(hearing_count = if_else(is.na(hearing_count), 0L, hearing_count))
+
+  # Transform to WGS84 for leaflet
+  districts_wgs84 <- st_transform(districts_sf, 4326)
+
+  saveRDS(hearings_clean, "hearings_clean.Rds")
+  saveRDS(districts_sf, "districts_sf.Rds")
+  saveRDS(districts_wgs84, "districts_wgs84.Rds")
+
+  # Save transformed data
 
   # Send email uncomment this
   # source("send_email.R")

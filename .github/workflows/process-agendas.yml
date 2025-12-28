@@ -91,5 +91,8 @@ jobs:
           git add data/*.pdf || true
           git add interim_*.parquet || true
           git add interim_*.Rds || true
+          git add hearings_clean.Rds || true
+          git add districts_sf.Rds || true
+          git add districts_wgs84.Rds || true
           git diff --staged --quiet || git commit -m "Update hearings data and dashboard - $(date +'%Y-%m-%d %H:%M')"
           git push
