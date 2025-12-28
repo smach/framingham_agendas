@@ -87,8 +87,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add hearings_with_districts.Rds || true
           git add new_hearings_with_districts.Rds || true
-          git add hearings_clean.Rds || true
-          git add districts_map.Rds || true
           git add manifest.json || true
           git add data/*.pdf || true
           git add interim_*.parquet || true

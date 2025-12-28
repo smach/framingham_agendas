@@ -67,10 +67,10 @@ if (length(pdf_files) > 0) {
 # Step 1: Download and text parse the PDFs
 
 if (nrow(needed_files) > 0) {
-   new_files <- needed_files 
+   new_files <- needed_files
    new_files$Text <- ""
    pdf_text_safely <- purrr::possibly(pdftools::pdf_text, otherwise = "")
-  
+
   for (i in 1:nrow(new_files)) {
     download.file(new_files$item_link[i], destfile = glue("data/{new_files$File[i]}"), quiet = TRUE, mode = "wb")
     all_text <- pdf_text_safely(glue("data/{new_files$File[i]}"))
@@ -79,21 +79,21 @@ if (nrow(needed_files) > 0) {
     new_files$Text[i] <- all_text_merged
 
     # Create a data frame of extracted Item, Address, Board, MeetingDate
-    
+
   }
-  
+
   new_files$Board <- stringr::str_squish(new_files$Board)
   new_files$Meeting <- stringr::str_squish(new_files$Meeting)
-  # Save interim new_files with just the text 
+  # Save interim new_files with just the text
   rio::export(new_files, "interim_latest_files_w_text.parquet")
 } else {
   print("No new meeting files needed to download")
-}  
+}
 
 
 # Step 2 if there are new files, extract Board, Date, Description, Address
 if(exists("new_files")) {
-  
+
   # Define object type for a hearing item
   type_hearing_item <- type_object(
     description = type_string("Short description of the hearing item"),
@@ -106,7 +106,7 @@ if(exists("new_files")) {
   )
 
   chat <- chat_openai(model = "gpt-4.1", system_prompt = "You are adept at extracting structured data such as descriptions and addresses from public meeting agenda. You do this for public hearing items and licensing hearing items.")
-  
+
   temp_results <- new_files %>%
   rowwise() %>%
   mutate(
@@ -118,7 +118,7 @@ if(exists("new_files")) {
     )
   ) %>%
   ungroup()
-  
+
   hearings_df <- temp_results %>%
   select(Date, Board, URL, extracted_hearings) %>%
   tidyr::unnest(extracted_hearings)
@@ -196,83 +196,3 @@ if(exists("hearings_df")) {
   # Send email uncomment this
   # source("send_email.R")
 }
-
-# Prepare data for mapgl Shiny app
-source("prep_mapgl_data.R")
-
-# Pre-process data for app.R to speed up Shiny app loading
-if (file.exists("hearings_with_districts.Rds")) {
-  message("Pre-processing data for Shiny app...")
-
-  # Load raw hearings data
-  hearings <- readRDS("hearings_with_districts.Rds")
-
-  # Create hearings_clean (same transformations as app.R)
-  hearings_clean <- hearings %>%
-    mutate(
-      District = as.character(District),
-      District = if_else(is.na(District), "Unknown", District),
-      Date = as.Date(Date),
-      Link = paste0('<a href="', URL, '" target="_blank">View Agenda</a>')
-    ) %>%
-    select(Date, District, Board, description, address, Link) %>%
-    arrange(desc(Date))
-
-  # Save pre-processed hearings
-  saveRDS(hearings_clean, "hearings_clean.Rds")
-  message("Saved hearings_clean.Rds with ", nrow(hearings_clean), " rows")
-
-  # Load district shapefile and pre-compute map data
-  districts_sf <- sf::st_read("gis/framingham_districts.shp", quiet = TRUE) %>%
-    mutate(District = as.character(District))
-
-  # Count hearings by district
-  hearing_counts <- hearings_clean %>%
-    filter(District != "Unknown") %>%
-    count(District, name = "hearing_count")
-
-  # Join counts to shapefile
-  districts_sf <- districts_sf %>%
-    left_join(hearing_counts, by = "District") %>%
-    mutate(hearing_count = if_else(is.na(hearing_count), 0L, hearing_count))
-
-  # Transform to WGS84 for leaflet
-  districts_wgs84 <- sf::st_transform(districts_sf, 4326)
-
-  # Save pre-processed map data
-  saveRDS(districts_wgs84, "districts_map.Rds")
-  message("Saved districts_map.Rds")
-
-  message("Pre-processing complete!")
-}
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
