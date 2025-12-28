@@ -7,54 +7,25 @@ on:
     - cron: '30 22 * * *'  # 5:30 PM EST
   workflow_dispatch:  # Allow manual triggering from Actions tab
 
+permissions:
+  contents: write
+  packages: read
+
 jobs:
   process-agendas:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/framingham-agendas-worker:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup R with r2u
-        uses: eddelbuettel/github-actions/r2u-setup@master
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev libpoppler-cpp-dev
-        timeout-minutes: 5
-
-      - name: Install R packages with r2u
-        run: |
-          # r2u provides binary packages for much faster installation
-          install.packages(c(
-            "pdftools",
-            "tidyRSS",
-            "glue",
-            "dplyr",
-            "data.table",
-            "tidyr",
-            "stringr",
-            "rio",
-            "nanoparquet",
-            "ellmer",
-            "purrr",
-            "tidygeocoder",
-            "sf",
-            "lubridate",
-            "emayili",
-            "DT",
-            "leaflet",
-            "htmlwidgets",
-            "shiny",
-            "bslib",
-            "rsconnect"
-          ))
-        shell: Rscript {0}
-        timeout-minutes: 15
-
-      - name: Set API keys and email credentials
+      - name: Run agenda processing script
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEOCODIO_API_KEY: ${{ secrets.GEOCODIO_API_KEY }}
@@ -64,17 +35,6 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-        run: |
-          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
-          echo "GEOCODIO_API_KEY=$GEOCODIO_API_KEY" >> $GITHUB_ENV
-          echo "SMTP_HOST=$SMTP_HOST" >> $GITHUB_ENV
-          echo "SMTP_PORT=$SMTP_PORT" >> $GITHUB_ENV
-          echo "SMTP_USERNAME=$SMTP_USERNAME" >> $GITHUB_ENV
-          echo "SMTP_PASSWORD=$SMTP_PASSWORD" >> $GITHUB_ENV
-          echo "EMAIL_TO=$EMAIL_TO" >> $GITHUB_ENV
-          echo "EMAIL_FROM=$EMAIL_FROM" >> $GITHUB_ENV
-
-      - name: Run agenda processing script
         run: Rscript agendas_to_geocode.R
 
       - name: Update manifest for deployment
@@ -83,6 +43,9 @@ jobs:
 
       - name: Commit and push results
         run: |
+          # Required for Git to work inside Docker container
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add hearings_with_districts.Rds || true
