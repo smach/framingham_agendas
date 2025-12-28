@@ -193,6 +193,15 @@ if(exists("hearings_df")) {
   # Save combined results
   saveRDS(all_hearings, "hearings_with_districts.Rds")
 
+  all_hearings <- readRDS("hearings_with_districts.Rds")
+  all_hearings <- all_hearings |>
+    filter(!stringr::str_detect(URL, "2605$|2563$"))
+  saveRDS(all_hearings, "hearings_with_districts.Rds")
+  # saveRDS(dupes, "deleted_dupes.Rds")
+  # get rid of 2605 and either 2563 or 4973
+
+
+
   # Send email uncomment this
   # source("send_email.R")
 }
