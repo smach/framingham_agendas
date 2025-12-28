@@ -24,9 +24,6 @@ agenda_feed_results <- tidyRSS::tidyfeed(agenda_feed) |>
     Type = "Agenda"
   )
 
-
-
-
 results <- agenda_feed_results |>
   mutate(
     Date = stringr::str_replace(item_title, ".*?\\s\\-\\s([A-Z][a-z][a-z]\\s\\d.*?$)", "\\1"),
@@ -45,13 +42,26 @@ results <- agenda_feed_results |>
   # Keep only most recent version for duplicate Date + Board combinations
   mutate(Board = str_squish(Board)) |>
   arrange(desc(item_pub_date)) |>
-  distinct(Date, Board, .keep_all = TRUE)
+  distinct(Date, Board, .keep_all = TRUE) |>
+  ungroup()
+
+previous_results <- readRDS("previous_results.Rds")
+
+results <- bind_rows(results, previous_results) |>
+  arrange(desc(item_pub_date)) |>
+  distinct(Date, Board, .keep_all = TRUE) |>
+  ungroup()
+
+saveRDS(results, "previous_results.Rds")
+
 
 existing_ids <- dir("data")
 existing_ids <- gsub(".pdf", "", existing_ids, fixed = TRUE)
+sixty_days_ago <- Sys.Date() - 60
 needed_files <- results |>
   filter(Board %in% c("Board of License Commissioners", "Planning Board", "Zoning Board of Appeals")) |>
-  filter(!ID %in% existing_ids)
+  filter(!ID %in% existing_ids) |>
+  filter(Date > sixty_days_ago) # Make sure don't re-download files that are more than 90 days old, since I'm cleaning out old PDFs!
 
 # Clean up PDFs older than 90 days
 pdf_files <- list.files("data", pattern = "\\.pdf$", full.names = TRUE)
@@ -232,4 +242,6 @@ if(exists("hearings_df")) {
 
   # Send email uncomment this
   # source("send_email.R")
+} else {
+  message("No new files processed")
 }

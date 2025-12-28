@@ -90,6 +90,7 @@ jobs:
           git add manifest.json || true
           git add data/*.pdf || true
           git add interim_*.parquet || true
+          git add previous_results.Rds || true
           git add interim_*.Rds || true
           git add hearings_clean.Rds || true
           git add districts_sf.Rds || true
