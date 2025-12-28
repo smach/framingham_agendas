@@ -3536,13 +3536,13 @@
   },
   "files": {
     ".github/workflows/process-agendas.yml": {
-      "checksum": "0dea7959aaf38f7cd772ae2c4526db21"
+      "checksum": "e3fa4c51a673cded62d07dea4f234b21"
     },
     "agendas_to_geocode.R": {
-      "checksum": "516f313634508d57bc10bdf364e962fd"
+      "checksum": "7ba34678875bf01481562e696af73a78"
     },
     "app.R": {
-      "checksum": "3175767431eaf84c332372f8945a8d66"
+      "checksum": "97cdb99bfe7c970882701d22dfd4e328"
     },
     "data/Agenda_2563.pdf": {
       "checksum": "baef1e3e9d9881fd75cf03ef3903905e"
@@ -3586,6 +3586,12 @@
     "data/temp.txt": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
+    "districts_sf.Rds": {
+      "checksum": "e497b9f7d5bb167fa9cd8e474aa34ac5"
+    },
+    "districts_wgs84.Rds": {
+      "checksum": "e786eb23dc1cd2dc4b13803df2a606ea"
+    },
     "gis/framingham_districts.dbf": {
       "checksum": "849ee03e9c63c6cc147addc47d98dc2b"
     },
@@ -3612,6 +3618,9 @@
     },
     "gis/process_shapfile.R": {
       "checksum": "553d0aa1fced84d4257455fe36356242"
+    },
+    "hearings_clean.Rds": {
+      "checksum": "54ed37a543c239c4c60e2bf41753301f"
     },
     "hearings_with_districts.Rds": {
       "checksum": "475fce0aa81d198be462a7b84aeed845"
