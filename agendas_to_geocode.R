@@ -197,6 +197,55 @@ if(exists("hearings_df")) {
   # source("send_email.R")
 }
 
+# Prepare data for mapgl Shiny app
+source("prep_mapgl_data.R")
+
+# Pre-process data for app.R to speed up Shiny app loading
+if (file.exists("hearings_with_districts.Rds")) {
+  message("Pre-processing data for Shiny app...")
+
+  # Load raw hearings data
+  hearings <- readRDS("hearings_with_districts.Rds")
+
+  # Create hearings_clean (same transformations as app.R)
+  hearings_clean <- hearings %>%
+    mutate(
+      District = as.character(District),
+      District = if_else(is.na(District), "Unknown", District),
+      Date = as.Date(Date),
+      Link = paste0('<a href="', URL, '" target="_blank">View Agenda</a>')
+    ) %>%
+    select(Date, District, Board, description, address, Link) %>%
+    arrange(desc(Date))
+
+  # Save pre-processed hearings
+  saveRDS(hearings_clean, "hearings_clean.Rds")
+  message("Saved hearings_clean.Rds with ", nrow(hearings_clean), " rows")
+
+  # Load district shapefile and pre-compute map data
+  districts_sf <- sf::st_read("gis/framingham_districts.shp", quiet = TRUE) %>%
+    mutate(District = as.character(District))
+
+  # Count hearings by district
+  hearing_counts <- hearings_clean %>%
+    filter(District != "Unknown") %>%
+    count(District, name = "hearing_count")
+
+  # Join counts to shapefile
+  districts_sf <- districts_sf %>%
+    left_join(hearing_counts, by = "District") %>%
+    mutate(hearing_count = if_else(is.na(hearing_count), 0L, hearing_count))
+
+  # Transform to WGS84 for leaflet
+  districts_wgs84 <- sf::st_transform(districts_sf, 4326)
+
+  # Save pre-processed map data
+  saveRDS(districts_wgs84, "districts_map.Rds")
+  message("Saved districts_map.Rds")
+
+  message("Pre-processing complete!")
+}
+
 
 
 
