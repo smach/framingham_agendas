@@ -41,7 +41,7 @@ districts_wgs84 <- st_transform(districts_sf, 4326)
 
 # Define UI
 ui <- page_navbar(
-  title = "Framingham Board of License Commissioners and Planning Board Agenda Data",
+  title = "Framingham Board of License Commissioners, Planning Board, and ZBA Agenda Data",
   theme = bs_theme(
     version = 5,
     bg = "#ffffff",
@@ -60,7 +60,7 @@ ui <- page_navbar(
       div(
         style = "background: #f0f7fb; border-left: 4px solid #2980b9; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-radius: 6px;",
         p(style = "margin-bottom: 0.75rem; color: #2c3e50; font-size: 1rem;",
-          "This dashboard shows scheduled public hearings extracted from Framingham Board of License Commissioners and Planning Board agendas, geocoded to city council districts."),
+          "This dashboard shows scheduled public hearings extracted from Framingham Board of License Commissioners, Planning Board, and ZBA agendas, geocoded to city council districts."),
         p(style = "margin: 0; color: #5a6c7d; font-size: 0.9rem;",
           tags$strong("Date range: "), format(min(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y'), " - ",
           format(max(hearings_clean$Date, na.rm = TRUE), '%B %d, %Y'), " | ",
