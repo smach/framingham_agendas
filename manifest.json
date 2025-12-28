@@ -3536,10 +3536,10 @@
   },
   "files": {
     ".github/workflows/process-agendas.yml": {
-      "checksum": "e3fa4c51a673cded62d07dea4f234b21"
+      "checksum": "c12837e4f1f1f5fceaafef902b994650"
     },
     "agendas_to_geocode.R": {
-      "checksum": "7ba34678875bf01481562e696af73a78"
+      "checksum": "37ebed6ac662eee73c89a4bd4c2f7db1"
     },
     "app.R": {
       "checksum": "97cdb99bfe7c970882701d22dfd4e328"
@@ -3633,6 +3633,9 @@
     },
     "new_hearings_with_districts.Rds": {
       "checksum": "32ddc4dea4eab967ecee4b27ee5e26f7"
+    },
+    "previous_results.Rds": {
+      "checksum": "60ea8a1d3bb50dfaba24fc0d73758f65"
     },
     "README.md": {
       "checksum": "afb23cc5122fd59ab4e04858609bd4d5"
