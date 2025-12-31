@@ -232,7 +232,7 @@ if(exists("hearings_df")) {
     mutate(hearing_count = if_else(is.na(hearing_count), 0L, hearing_count))
 
   # Transform to WGS84 for leaflet
-  districts_wgs84 <- st_transform(districts_sf, 4326)
+  districts_wgs84 <- sf::st_transform(districts_sf, 4326)
 
   saveRDS(hearings_clean, "hearings_clean.Rds")
   saveRDS(districts_sf, "districts_sf.Rds")
