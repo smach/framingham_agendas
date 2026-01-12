@@ -15,7 +15,7 @@ library(ellmer)
 library(dplyr)
 library(purrr)
 library(tidygeocoder)
-# library(emayili)
+library(emayili)
 
 agenda_feed <- "https://framinghamma.granicus.com/ViewPublisherRSS.php?view_id=1&mode=agendas"
 
@@ -240,8 +240,11 @@ if(exists("hearings_df")) {
 
   # Save transformed data
 
-  # Send email uncomment this
-  # source("send_email.R")
+  # Send email notification for new hearings in monitored districts
+  tryCatch(
+    source("send_email.R"),
+    error = function(e) message("Email sending failed: ", e$message)
+  )
 } else {
   message("No new files processed")
 }

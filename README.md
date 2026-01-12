@@ -7,7 +7,7 @@ It uses several technologies I am keenly interested in when working with local g
 * Extracting structured data from text using an LLM
 * Geocoding data and assigning it to a polygon area (in this case a city District)
 * Displaying data interactively in both a map and searchable table
-* Still to hook up: Sending out an email when data I want is updated.
+* Sending out an email when new hearings are found in monitored districts
 
 The only thing it's missing is a chatbot! 😀 I don't think this data set needs one, but if you're interested in that, check out my InfoWorld article [How to create your own RAG applications in R](https://www.infoworld.com/article/4020484/generative-ai-rag-comes-to-the-r-tidyverse.html).
 
@@ -196,4 +196,47 @@ datatable(
 ```
 
 The `DT` package wraps DataTables.js. The `extensions = 'Buttons'` adds export functionality, and `dom = 'Bfrtip'` controls the layout (Buttons, filter, processing, table, info, pagination). The `escape = FALSE` parameter allows our HTML links in the Link column to render as clickable anchors.
+
+## send_email.R
+
+This script sends email notifications when new hearing items are found in monitored districts. It's called automatically at the end of `agendas_to_geocode.R` when new hearings are processed.
+
+### Configuration
+
+The script monitors specific districts (configurable in `send_email.R`):
+
+```r
+districts_to_notify <- c("1", "2", "3", "4")
+```
+
+### Email content
+
+When new hearings are found in monitored districts, the email includes:
+- Subject line with count and district numbers
+- For each hearing: District, Date, Board, Description, Address, and link to the agenda PDF
+
+## GitHub Actions Workflow
+
+The `process-agendas.yml` workflow runs automatically twice daily (8:30 AM and 5:30 PM EST) and can also be triggered manually.
+
+### Required Secrets
+
+To enable the workflow, you need to add these secrets to your GitHub repository:
+
+1. Go to your repository on GitHub
+2. Click **Settings** → **Secrets and variables** → **Actions**
+3. Click **"New repository secret"** for each of the following:
+
+| Secret Name | Description | Example |
+|-------------|-------------|---------|
+| `OPENAI_API_KEY` | OpenAI API key for LLM extraction | `sk-...` |
+| `GEOCODIO_API_KEY` | Geocodio API key for address geocoding | `abc123...` |
+| `SMTP_HOST` | SMTP server hostname | `smtp.gmail.com` |
+| `SMTP_PORT` | SMTP server port | `587` |
+| `SMTP_USERNAME` | SMTP authentication username | `you@gmail.com` |
+| `SMTP_PASSWORD` | SMTP password or app-specific password | `xxxx xxxx xxxx xxxx` |
+| `EMAIL_TO` | Recipient email address | `you@example.com` |
+| `EMAIL_FROM` | Sender email address | `you@gmail.com` |
+
+**Note for Gmail users:** You'll need to use an [App Password](https://support.google.com/accounts/answer/185833) rather than your regular password.
 

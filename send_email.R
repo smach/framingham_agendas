@@ -1,5 +1,5 @@
 # Step 4: Send email notification for new hearings in districts 1, 2, 3, 4, or 6
-  districts_to_notify <- c("1", "2", "3", "4", "6")
+  districts_to_notify <- c("1", "2", "3", "4")
   new_items_to_notify <- hearings_with_districts %>%
     filter(District %in% districts_to_notify)
 
