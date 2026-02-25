@@ -3539,7 +3539,7 @@
       "checksum": "2f289449966d7cfeccf077a3997c86d3"
     },
     ".github/workflows/process-agendas.yml": {
-      "checksum": "427995930f78431b1432e4f6394b9d08"
+      "checksum": "c5264d575b9cff7ac60f3137a757e60b"
     },
     "agendas_to_geocode.R": {
       "checksum": "6728bd547db229d94f00e8e85fe004f7"
@@ -3661,17 +3661,11 @@
     "hearings_with_districts.Rds": {
       "checksum": "741192e40d12603bf6fdfb8bd06d0661"
     },
-    "interim_latest_files_geocoded.Rds": {
-      "checksum": "ef5462ae89e4922c4e3860da392194c3"
-    },
-    "interim_latest_files_w_text.parquet": {
-      "checksum": "b13d0c214b9d29cee5a82562c2b60874"
-    },
     "new_hearings_with_districts.Rds": {
       "checksum": "a015583fccdb3964fc40204cac31181f"
     },
     "previous_results.Rds": {
-      "checksum": "672643251a64ffb9900ec6f76434007e"
+      "checksum": "d65e1a593af67d1c0a7d3869f245d42e"
     },
     "README.md": {
       "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
