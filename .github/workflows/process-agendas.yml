@@ -52,9 +52,7 @@ jobs:
           git add new_hearings_with_districts.Rds || true
           git add manifest.json || true
           git add data/*.pdf || true
-          git add interim_*.parquet || true
           git add previous_results.Rds || true
-          git add interim_*.Rds || true
           git add hearings_clean.Rds || true
           git add districts_sf.Rds || true
           git add districts_wgs84.Rds || true
