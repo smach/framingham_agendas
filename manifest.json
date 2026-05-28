@@ -3625,6 +3625,12 @@
     "data/Agenda_2991.pdf": {
       "checksum": "997039b1610566ed23f22fc77219bc22"
     },
+    "data/Agenda_3017.pdf": {
+      "checksum": "3383fd701bd4748416c47005e89e961a"
+    },
+    "data/Agenda_3018.pdf": {
+      "checksum": "89186e13ab6bf02696488d3bbb23ff93"
+    },
     "data/Agenda_4850.pdf": {
       "checksum": "2ff60bf3d84764f77dbfadd0d6660668"
     },
@@ -3665,10 +3671,10 @@
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
     "districts_sf.Rds": {
-      "checksum": "eaf662b640fc1801edf34ff619b36519"
+      "checksum": "0ee2e66ade6c4d7fccf5fec8beb430f3"
     },
     "districts_wgs84.Rds": {
-      "checksum": "5343bf6126319e3b3a305112cdeba40e"
+      "checksum": "3439240b9ec88f4bfbdec05f6443efd7"
     },
     "Dockerfile": {
       "checksum": "45cc92546c12b1ab1e6672f40d2a6087"
@@ -3701,16 +3707,19 @@
       "checksum": "553d0aa1fced84d4257455fe36356242"
     },
     "hearings_clean.Rds": {
-      "checksum": "92b63330541f6f367aaa9239266fc532"
+      "checksum": "ceb3008a2cb184082b92cc0576cd3ac9"
     },
     "hearings_with_districts.Rds": {
-      "checksum": "fc274d05d53db0ca4bb92f1451c3a18c"
+      "checksum": "ccef09b3cda5e954619ab60827094603"
+    },
+    "interim_latest_files_w_text.parquet": {
+      "checksum": "e78fc886662c4aedc68f981964b9b11c"
     },
     "new_hearings_with_districts.Rds": {
-      "checksum": "a4729446a0e5a3e719201ba239bdf3fa"
+      "checksum": "27b969451431a9464b70d9e97fcfb382"
     },
     "previous_results.Rds": {
-      "checksum": "76f230586c4416f1ff76224b62518a24"
+      "checksum": "35184c71184c27a253421f888825bdf5"
     },
     "README.md": {
       "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
