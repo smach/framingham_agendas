@@ -3748,9 +3748,6 @@
     "hearings_with_districts.Rds": {
       "checksum": "c503c386b3e639eabf43879f406e9b6b"
     },
-    "interim_latest_files_w_text.parquet": {
-      "checksum": "d310a11feb35511474525c059875b39c"
-    },
     "new_hearings_with_districts.Rds": {
       "checksum": "58cbe2f59ee4c5932bc9e58516bea041"
     },
