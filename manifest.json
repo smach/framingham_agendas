@@ -3751,14 +3751,11 @@
     "hearings_with_districts.Rds": {
       "checksum": "8da7c2cdf888f6c8e996ec3055946415"
     },
-    "interim_latest_files_w_text.parquet": {
-      "checksum": "a23a973b9ea07906ca7a61950570a3b4"
-    },
     "new_hearings_with_districts.Rds": {
       "checksum": "0d854ab47c912088189ff6ca3c56a9a9"
     },
     "previous_results.Rds": {
-      "checksum": "abfa46b4ca4c5c148190a3d16cedc19c"
+      "checksum": "1b1d1d62e80099b536980c200056e4a8"
     },
     "README.md": {
       "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
