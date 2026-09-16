@@ -3760,14 +3760,11 @@
     "hearings_with_districts.Rds": {
       "checksum": "fe944ddc3420e1adb1b3193532fe92e8"
     },
-    "interim_latest_files_w_text.parquet": {
-      "checksum": "96eae34e7ec7f2b4b2e8e4592a80df61"
-    },
     "new_hearings_with_districts.Rds": {
       "checksum": "3084bfdb33e623a13a2ce4745a9dcbb8"
     },
     "previous_results.Rds": {
-      "checksum": "6eba47b8b7aaeaabe7ad542a26360e16"
+      "checksum": "1297b38efb932e5a4c9a8176104d0072"
     },
     "README.md": {
       "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
