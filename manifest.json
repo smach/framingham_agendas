@@ -3769,14 +3769,11 @@
     "hearings_with_districts.Rds": {
       "checksum": "e287aa61e8335ba6f9ccb9f2869f0760"
     },
-    "interim_latest_files_w_text.parquet": {
-      "checksum": "fd9f65862154263ae36d68681ddf933c"
-    },
     "new_hearings_with_districts.Rds": {
       "checksum": "2dc8eca79cc898836b42684d00bff849"
     },
     "previous_results.Rds": {
-      "checksum": "a857a3883c97ed31217663e56756ca30"
+      "checksum": "0434ee3eb1351579dba39fdaf349ca4c"
     },
     "README.md": {
       "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
