@@ -3539,10 +3539,13 @@
       "checksum": "2f289449966d7cfeccf077a3997c86d3"
     },
     ".github/workflows/process-agendas.yml": {
-      "checksum": "c5264d575b9cff7ac60f3137a757e60b"
+      "checksum": "b05c1906aa31bbe66d955f95ee059379"
+    },
+    ".github/workflows/test-email.yml": {
+      "checksum": "ecd1e1d56794a6157e1b00ca2e372780"
     },
     "agendas_to_geocode.R": {
-      "checksum": "6728bd547db229d94f00e8e85fe004f7"
+      "checksum": "a50dad07451fb98d8b8343549fa89a22"
     },
     "app.R": {
       "checksum": "97cdb99bfe7c970882701d22dfd4e328"
@@ -3739,6 +3742,9 @@
     "Dockerfile": {
       "checksum": "45cc92546c12b1ab1e6672f40d2a6087"
     },
+    "email_config.R": {
+      "checksum": "1acb1f6697c50e3e93b8c291cca5e871"
+    },
     "gis/framingham_districts.dbf": {
       "checksum": "849ee03e9c63c6cc147addc47d98dc2b"
     },
@@ -3776,13 +3782,16 @@
       "checksum": "1e35506c764d934f14fb4f933da23d73"
     },
     "previous_results.Rds": {
-      "checksum": "d047f7e6aa8023e9e62692b91a91e3fa"
+      "checksum": "baad782a2c8e15cb64153ea2ea84953d"
     },
     "README.md": {
-      "checksum": "d021612b2a9f7fa261262f4bfa05a42d"
+      "checksum": "c0fd8d4364d3c4e49b0be911e0edea21"
     },
     "send_email.R": {
-      "checksum": "dccb7281800e2fc15f8f0d6c9884e0e0"
+      "checksum": "f424eb039be6dd2872ee86c5ff79eb13"
+    },
+    "test_email.R": {
+      "checksum": "15b2d2edfe095c4fe51b9db885812eb5"
     }
   },
   "users": null
