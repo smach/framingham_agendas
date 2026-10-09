@@ -1,0 +1,35 @@
+name: Send Test Email
+
+# Run this by hand (Actions tab > Send Test Email > Run workflow) to check the
+# email secrets without waiting for a real hearing notification.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  test-email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Same Docker image as the main workflow, so emayili is already installed
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/framingham-agendas-worker:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send test email
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: Rscript test_email.R

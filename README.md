@@ -215,6 +215,24 @@ When new hearings are found in monitored districts, the email includes:
 - Subject line with count and district numbers
 - For each hearing: District, Date, Board, Description, Address, and link to the agenda PDF
 
+### Shared helpers: email_config.R
+
+The SMTP setup lives in `email_config.R` so the real notifications and the test script use exactly the same settings. It:
+
+- checks that every email secret is set, printing only "set" or "MISSING" (never the values)
+- trims stray spaces and newlines from pasted secrets
+- retries a failed send up to 3 times, printing the server's real error each time (emayili's built-in retries only report "Request failed after 5 attempts")
+
+### When sending fails
+
+An email failure never stops the data from being saved. The error is caught, written to the log and shown as a red annotation on the run's summary page. A final workflow step then marks the run as failed, after the data has been committed, so GitHub sends you its usual "workflow failed" notification.
+
+### Testing email: test_email.R
+
+To check your email settings without waiting for a new hearing in a monitored district, go to the **Actions** tab, choose **Send Test Email** and click **Run workflow**. It sends one test message to `EMAIL_TO`. If that fails, the log shows the real error and some common causes.
+
+To test locally instead, set the `SMTP_*` and `EMAIL_*` environment variables (for example in `.Renviron`) and run `Rscript test_email.R`.
+
 ## GitHub Actions Workflow
 
 The `process-agendas.yml` workflow runs automatically twice daily (8:30 AM and 5:30 PM EST) and can also be triggered manually.
@@ -238,5 +256,7 @@ To enable the workflow, you need to add these secrets to your GitHub repository:
 | `EMAIL_TO` | Recipient email address | `you@example.com` |
 | `EMAIL_FROM` | Sender email address | `you@gmail.com` |
 
-**Note for Gmail users:** You'll need to use an [App Password](https://support.google.com/accounts/answer/185833) rather than your regular password.
+**Note for Gmail users:** You'll need to use an [App Password](https://support.google.com/accounts/answer/185833) rather than your regular password. Use `smtp.gmail.com` and port `587`.
+
+**Checking whether a secret has a value:** GitHub never shows secret values, even on the Settings page. In a run's log, a secret that has a value appears as `***`, and one that is empty or missing appears blank. The **Send Test Email** workflow also prints whether each email secret is set.
 

@@ -1,3 +1,4 @@
 interim_*.parquet
 interim_*.Rds
 deleted_dupes.Rds
+email_error.txt

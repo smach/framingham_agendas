@@ -39,7 +39,7 @@ jobs:
 
       - name: Update manifest for deployment
         run: |
-          Rscript -e "rsconnect::writeManifest(appPrimaryDoc = 'hearings_app.R')"
+          Rscript -e "rsconnect::writeManifest(appPrimaryDoc = 'app.R')"
 
       - name: Commit and push results
         run: |
@@ -58,3 +58,15 @@ jobs:
           git add districts_wgs84.Rds || true
           git diff --staged --quiet || git commit -m "Update hearings data and dashboard - $(date +'%Y-%m-%d %H:%M')"
           git push
+
+      # Runs after the data is committed, so an email problem never loses data.
+      # send_email.R failures are caught in R and leave email_error.txt behind;
+      # failing here turns the run red and triggers GitHub's failure notice.
+      - name: Fail run if email notification failed
+        run: |
+          if [ -f email_error.txt ]; then
+            echo "Email notification failed:"
+            cat email_error.txt
+            echo "Run the 'Send Test Email' workflow to debug your email secrets."
+            exit 1
+          fi
