@@ -240,10 +240,15 @@ if(exists("hearings_df")) {
 
   # Save transformed data
 
-  # Send email notification for new hearings in monitored districts
+  # Send email notification for new hearings in monitored districts.
+  # An email failure shouldn't stop the data from being saved and committed,
+  # so the error is caught here. report_email_failure() (in email_config.R)
+  # logs the real cause and leaves email_error.txt behind; the workflow's last
+  # step then marks the run as failed so the problem doesn't go unnoticed.
+  source("email_config.R")
   tryCatch(
     source("send_email.R"),
-    error = function(e) message("Email sending failed: ", e$message)
+    error = function(e) report_email_failure(describe_email_error(e))
   )
 } else {
   message("No new files processed")
