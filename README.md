@@ -258,5 +258,9 @@ To enable the workflow, you need to add these secrets to your GitHub repository:
 
 **Note for Gmail users:** You'll need to use an [App Password](https://support.google.com/accounts/answer/185833) rather than your regular password. Use `smtp.gmail.com` and port `587`.
 
+### Map Tile API Key
+
+The dashboard's background map comes from Carto, which now requires an API key. `app.R` reads it from the `CARTIO_API_KEY` environment variable. Because the Shiny app runs on its hosting service, not in GitHub Actions, a GitHub secret alone doesn't reach it: set `CARTIO_API_KEY` in the hosting service's environment variable/secrets settings too (and in `.Renviron` to see Carto tiles when running locally). Without the key, the app falls back to OpenStreetMap tiles.
+
 **Checking whether a secret has a value:** GitHub never shows secret values, even on the Settings page. In a run's log, a secret that has a value appears as `***`, and one that is empty or missing appears blank. The **Send Test Email** workflow also prints whether each email secret is set.
 

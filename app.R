@@ -14,6 +14,39 @@ hearings_clean <- readRDS("hearings_clean.Rds")
 districts_sf <- readRDS("districts_sf.Rds")
 districts_wgs84 <- readRDS("districts_wgs84.Rds")
 
+# Carto background map tiles now need an API key. The key is read from the
+# CARTIO_API_KEY environment variable so it is never written into this file.
+# Where the app runs (e.g. Posit Connect Cloud) that variable must be set in the
+# hosting service's settings; a GitHub Actions secret does not reach the app.
+carto_api_key <- trimws(Sys.getenv("CARTIO_API_KEY"))
+
+# "light_all" is Carto's Positron style, the light gray map this app always
+# used. Change it to "rastertiles/voyager" for Carto's more colorful style.
+carto_style <- "light_all"
+
+# Leaflet fills in {z} (zoom), {x} and {y} (tile position) for each map tile;
+# {r} becomes "@2x" on high-resolution screens so the map stays sharp.
+carto_tile_url <- paste0(
+  "https://basemaps.cartocdn.com/", carto_style,
+  "/{z}/{x}/{y}{r}.png?key=", carto_api_key
+)
+
+carto_attribution <- paste(
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+)
+
+# Add the background map to a leaflet map. With no key set (say, running the
+# app locally without .Renviron), fall back to plain OpenStreetMap tiles so the
+# map still shows something, and print a message explaining why.
+add_basemap <- function(map) {
+  if (carto_api_key == "") {
+    message("CARTIO_API_KEY is not set; using OpenStreetMap tiles instead of Carto.")
+    return(addProviderTiles(map, providers$OpenStreetMap))
+  }
+  addTiles(map, urlTemplate = carto_tile_url, attribution = carto_attribution)
+}
+
 
 # # Clean hearings data
 # hearings_clean <- hearings %>%
@@ -171,7 +204,7 @@ server <- function(input, output, session) {
   output$map <- renderLeaflet({
     leaflet(districts_wgs84,
             options = leafletOptions(doubleClickZoom = TRUE)) %>%
-      addProviderTiles(providers$CartoDB.Positron) %>%
+      add_basemap() %>%
       addPolygons(
         fillColor = ~pal(hearing_count),
         fillOpacity = 0.7,
