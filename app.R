@@ -171,7 +171,14 @@ server <- function(input, output, session) {
   output$map <- renderLeaflet({
     leaflet(districts_wgs84,
             options = leafletOptions(doubleClickZoom = TRUE)) %>%
-      addProviderTiles(providers$CartoDB.Positron) %>%
+      # Esri's light gray basemap: free, no API key needed, and similar to the
+      # Carto Positron style this app used before Carto started requiring keys.
+      # Esri only has these tiles up to zoom 16, so maxNativeZoom stretches the
+      # zoom 16 tiles when someone zooms in further instead of showing a blank map.
+      addProviderTiles(
+        providers$Esri.WorldGrayCanvas,
+        options = providerTileOptions(maxNativeZoom = 16, maxZoom = 19)
+      ) %>%
       addPolygons(
         fillColor = ~pal(hearing_count),
         fillOpacity = 0.7,
