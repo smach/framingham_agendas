@@ -3545,7 +3545,7 @@
       "checksum": "ecd1e1d56794a6157e1b00ca2e372780"
     },
     "agendas_to_geocode.R": {
-      "checksum": "a50dad07451fb98d8b8343549fa89a22"
+      "checksum": "ae743eba53c62f1a4e1e9639a43cfc36"
     },
     "app.R": {
       "checksum": "fd22e4838c815494a1d1089dc34c6212"
@@ -3800,7 +3800,7 @@
       "checksum": "101e4e5c857c007f7942603ce6cbbc83"
     },
     "README.md": {
-      "checksum": "c0fd8d4364d3c4e49b0be911e0edea21"
+      "checksum": "594ecf78f6a93118e08f61bb87ea85ef"
     },
     "send_email.R": {
       "checksum": "f424eb039be6dd2872ee86c5ff79eb13"
