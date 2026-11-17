@@ -65,7 +65,7 @@ type_hearings <- type_array(type_hearing_item)
 First, we define the scheme we want for the structured data, using `type_object()` (structure of a single item) and `type_array()` (lets the LLM know we will likely have more than one object in the text, so return a data frame not a single item). The `required = FALSE` on address handles items that don't have a physical location.
 
 ```r
-chat <- chat_openai(model = "gpt-4.1", system_prompt = "...")
+chat <- chat_openai(model = "gpt-5.4", system_prompt = "...")
 
 chat$chat_structured(
   paste("Extract all hearing items from the following agenda text:", Text),
